@@ -13,7 +13,7 @@ Prikazuje cijeli tok: lokalni razvoj kroz Compose i produkcijski deployment kroz
 
 ### Brza validacija funkcionalnosti
 
-1. Health API:
+1. Health API:y
    ```bash
    curl http://localhost:8080/healthz
    curl http://localhost:8080/readyz
