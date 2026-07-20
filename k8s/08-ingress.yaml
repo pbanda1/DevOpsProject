@@ -11,8 +11,7 @@ spec:
     - host: ticketing.local
       http:
         paths:
-          # API middleware (server.js) vec sam skida "/api" prefiks interno,
-          # pa ovdje NIJE potreban rewrite-target - path ide direktno na api servis.
+          # API middleware (server.js) vec sam skida "/api" prefiks interno
           - path: /api
             pathType: Prefix
             backend:

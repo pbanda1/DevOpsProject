@@ -1,7 +1,4 @@
-# Worker nema HTTP endpoint (isti razlog kao izostanak Docker HEALTHCHECK-a u CP1/CP3:
-# nema porta na koji bi liveness/readiness probe mogao pogoditi, a exec-provjera
-# procesa (pgrep/ps) nije pouzdano dostupna u minimalnoj Alpine slici).
-# Zdravlje se prati kroz logove/observability, konzistentno s ranijom odlukom.
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:

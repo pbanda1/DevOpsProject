@@ -14,7 +14,6 @@ EXPOSE 8080
 CMD ["npm", "run", "dev"]
 
 ##### Stage: deps #####
-# Instalira SAMO produkcijske ovisnosti (bez nodemon i sl.)
 FROM base AS deps
 RUN npm ci --omit=dev
 
@@ -23,15 +22,12 @@ FROM node:22-alpine AS runtime
 ENV NODE_ENV=production
 WORKDIR /app
 
-# Non-root korisnik (node:22-alpine vec sadrzi 'node' korisnika, UID/GID 1000)
+# Non-root korisnik 
 COPY --from=deps --chown=node:node /app/node_modules ./node_modules
 COPY --chown=node:node package.json ./
 COPY --chown=node:node src ./src
 
-# CP3 hardening: uklanjamo npm/npx/corepack iz finalne slike.
-# Runtime nikad ne poziva npm (samo "node src/server.js"), pa npm i njegove
-# vlastite ovisnosti (sigstore, tar, picomatch, brace-expansion, ip-address...)
-# samo povecavaju povrsinu za napad bez ikakve funkcionalne koristi.
+# hardening: 
 RUN rm -rf /usr/local/lib/node_modules/npm \
     /usr/local/lib/node_modules/corepack \
     /usr/local/bin/npm \
