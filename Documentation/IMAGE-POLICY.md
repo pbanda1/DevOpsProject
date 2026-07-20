@@ -27,7 +27,8 @@
 ## Politika tagiranja i objave slika
 
     - Zabranjeno korištenje :latest taga u produkciji.  Svaka slika koja ide u registry mora imati nepromjenjivi (immutable) tag.
-    - Predložena shema tagiranja: <servis>:<semver>-<git-short-sha>, npr. api:1.0.0-a1b2c3d. Semver prati verziju iz package.json, git SHA osigurava        jedinstvenost i sljedivost do točnog commita.
+    - Predložena shema tagiranja: <servis>:<semver>-<git-short-sha>, npr. api:1.0.0-a1b2c3d. 
+    - Semver prati verziju iz package.json, git SHA osigurava jedinstvenost i sljedivost do točnog commita.
     - Slike se grade i objavljuju kroz CI u GitHub Container Registry (GHCR), povezan s repozitorijem projekta.
     - Rollback  se oslanja upravo na ovu shemu - vraćanje na prethodni immutable tag umjesto oslanjanja na "trenutno stanje" pomičnog taga.
     - Prije objave slike u registry, slika prolazi Trivy sken kao quality gate - slika s critical/high ranjivostima se ne objavljuje.

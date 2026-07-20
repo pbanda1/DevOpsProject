@@ -8,15 +8,15 @@
 
     1. Checkout — preuzimanje koda iz repozitorija.
 
-    2. Build validacija (npm ci) — instalacija ovisnosti točno prema package-lock.json, provjerava da su lockfile i ovisnosti ispravni prije nego se uopće krene na build slike. Projekt trenutno nema formalne unit testove; ovo je minimalna automatizirana provjera koja postoji do njihove izrade.
+    2. Build validacija (npm ci) — instalacija ovisnosti točno prema package-lock.json, provjerava da su lockfile i ovisnosti ispravni prije nego se uopće krene na build slike.
 
-    3. Docker build (--target runtime) — gradi se ista produkcijska (hardenirana, CP3) slika koja se stvarno objavljuje i deploya, lokalno unutar runnera (load: true), spremna za skeniranje prije nego ide bilo kamo dalje.
+    3. Docker build (--target runtime) — gradi se ista produkcijska (hardenirana) slika koja se stvarno objavljuje i deploya, lokalno unutar runnera (load: true), spremna za skeniranje prije nego ide bilo kamo dalje.
 
     4. Trivy sken — quality gate — slika se skenira na CRITICAL/HIGH ranjivosti. Ako se nešto takvo pronađe, korak vraća exit code 1 i cijeli pipeline staje — slika se ne pusha dalje.
 
     5. Odluka (grana + event) — push u registry se izvršava samo ako je sken prošao i radi se o push eventu na main grani (pull requestovi nikad ne pushaju sliku, samo se validiraju).
 
-    6. Push u GHCR — slika se objavljuje u GitHub Container Registry (ghcr.io/pbanda1/devopsproject-servis), tagirana git SHA-om (nikad :latest), u skladu s politikom tagiranja iz image-policy.md.
+    6. Push u GHCR — slika se objavljuje u GitHub Container Registry (ghcr.io/pbanda1/devopsproject-servis), u skladu s politikom tagiranja iz image-policy.md.
 
 ## Sigurnost pipelinea
 
