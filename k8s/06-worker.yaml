@@ -1,0 +1,40 @@
+# Worker nema HTTP endpoint (isti razlog kao izostanak Docker HEALTHCHECK-a u CP1/CP3:
+# nema porta na koji bi liveness/readiness probe mogao pogoditi, a exec-provjera
+# procesa (pgrep/ps) nije pouzdano dostupna u minimalnoj Alpine slici).
+# Zdravlje se prati kroz logove/observability, konzistentno s ranijom odlukom.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: worker
+  namespace: ticketing
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: worker
+  template:
+    metadata:
+      labels:
+        app: worker
+    spec:
+      imagePullSecrets:
+        - name: ghcr-pull-secret
+      containers:
+        - name: worker
+          image: ghcr.io/pbanda1/devopsproject-worker:fae7c06d110d9921151fc7b8af22a705e5bc6bdb
+          envFrom:
+            - configMapRef:
+                name: ticketing-config
+          env:
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: ticketing-secret
+                  key: POSTGRES_PASSWORD
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "300m"
+              memory: "256Mi"
