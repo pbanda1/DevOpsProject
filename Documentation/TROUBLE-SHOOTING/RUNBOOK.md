@@ -1,9 +1,5 @@
 
-## Runbook — troubleshooting postupci (Ishod I5)
-
-    Ovaj dokument bilježi stvarne incidentne scenarije nastale tijekom Kubernetes manifesti i ServiceAccounts, RBAC, NetworkPolicy isporuke, s dijagnozom, analizom uzroka, korektivnom mjerom i validacijom nakon ispravka. Struktura prati isti obrazac kao Security/IMAGE-SCAN-REPORT.md , radi dosljednosti pristupa nalazima i korektivnim mjerama kroz cijeli projekt.
-
-
+## Runbook — troubleshooting postupci 
 
 ## Sistematičan troubleshooting postupak
 
