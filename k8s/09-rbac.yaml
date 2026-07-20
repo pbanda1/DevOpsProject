@@ -1,0 +1,42 @@
+# Least-privilege ServiceAccount-i po servisu.
+
+# Nijedan od mojih servisa (api/worker/frontend/postgres/redis) ne treba
+# razgovarati s Kubernetes API-jem - to su obicne aplikacije, ne kontroleri.
+
+# Zato je ovdje "least privilege": svaki servis dobiva svoj Service Account
+
+
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: api-sa
+  namespace: ticketing
+automountServiceAccountToken: false
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: worker-sa
+  namespace: ticketing
+automountServiceAccountToken: false
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: frontend-sa
+  namespace: ticketing
+automountServiceAccountToken: false
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: postgres-sa
+  namespace: ticketing
+automountServiceAccountToken: false
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: redis-sa
+  namespace: ticketing
+automountServiceAccountToken: false

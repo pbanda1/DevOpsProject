@@ -17,3 +17,6 @@ npm-debug.log*
 
 # Docker
 *.pid
+
+# Kubernetes - pravi Secret ne smije biti u repozitoriju
+k8s/02-secret.yaml

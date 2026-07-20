@@ -46,6 +46,7 @@ spec:
       labels:
         app: postgres
     spec:
+      serviceAccountName: postgres-sa
       containers:
         - name: postgres
           image: postgres:16-alpine
