@@ -6,7 +6,7 @@
 
     Razlozi:
 
-    - Alpine varijanta koristi musl libc i BusyBox umjesto pune Debian/Ubuntu distribucije, što rezultira slikom od svega ~40-50 MB u odnosu na ~350+ MB standardne `node:22` slike. 
+    - Alpine varijanta koristi musl libc i BusyBox umjesto pune Debian/Ubuntu distribucije, što rezultira slikom od svega ~40-50 MB u odnosu na ~350+ MB standardne node:22 slike. 
     Manja slika znači manju površinu za napad (manje instaliranih paketa = manje potencijalnih CVE-a) i brži pull/deploy.
     - Node 22 je aktivna LTS verzija u trenutku pisanja projekta, s dugoročnom podrškom i sigurnosnim zakrpama.
     -Koristimo isti base image kroz apsolutno sve faze builda (base, dev, deps, runtime). Na taj način smo sigurni da će se aplikacija ponašati identično i kod nas na lokalnom računalu tijekom razvoja i kasnije u produkciji
