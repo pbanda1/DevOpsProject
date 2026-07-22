@@ -34,6 +34,37 @@ Prikazuje cijeli tok: lokalni razvoj kroz Compose i produkcijski deployment kroz
    ```
 5. UI:
    - Otvori `http://localhost:3000`
+   ## Produkcijski deployment (Kubernetes)
+
+Preduvjeti:
+- Kubernetes klaster s uključenim NGINX Ingress kontrolerom
+- Unos u hosts datoteci koji `ticketing.local` mapira na IP klastera
+
+Priprema tajni (Secret nije u repozitoriju, samo predložak):
+```bash
+cp k8s/02-secret.example.yaml k8s/02-secret.yaml
+# uredi k8s/02-secret.yaml i postavi stvarnu POSTGRES_PASSWORD vrijednost
+```
+
+Deploy cijelog stacka (redoslijed po broju datoteke - namespace, config, baze, aplikacija, ingress, RBAC, NetworkPolicy):
+```bash
+kubectl apply -f k8s/
+```
+
+Provjera statusa:
+```bash
+kubectl get pods -n ticketing
+kubectl get ingress -n ticketing
+```
+
+Validacija funkcionalnosti kroz Ingress:
+```bash
+curl http://ticketing.local/api/readyz
+curl http://ticketing.local/api/events
+```
+- UI: otvori `http://ticketing.local`
+
+Za rolling update, rollback i rješavanje problema u produkciji vidi `Documentation/TROUBLE-SHOOTING/RUNBOOK.md`.
 
 ## Sigurnosni elementi
 
@@ -45,4 +76,4 @@ Prikazuje cijeli tok: lokalni razvoj kroz Compose i produkcijski deployment kroz
 - NetworkPolicy segmentacija
 - Trivy skeniranje slika u CI pipelineu
 
-Detalji skeniranja: `docs/security/image-scan-report.md`
+Detalji skeniranja: Documentation/SECURITY/IMAGE-SCAN-REPORT.md

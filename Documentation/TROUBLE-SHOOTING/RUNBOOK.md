@@ -1,5 +1,5 @@
 
-## Runbook — troubleshooting postupci 
+## Runbook — troubleshooting postupci kod incidenata
     Za svaki incident primjenjuje se isti redoslijed koraka:
 ## 1 ->  Opažanje simptoma
     Pomoću naredbe: kubectl get pods -n ticketing
