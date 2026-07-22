@@ -1,7 +1,6 @@
 # Odluka o base image i politici tagiranja 
 
 ## Base image
-
     Odabran je node:22-alpine kao osnovna slika za sva tri Node.js servisa (frontend, api, worker).
 
     Razlozi:
@@ -12,11 +11,9 @@
     -Koristimo isti base image kroz apsolutno sve faze builda (base, dev, deps, runtime). Na taj način smo sigurni da će se aplikacija ponašati identično i kod nas na lokalnom računalu tijekom razvoja i kasnije u produkciji
 
 ## Non-root korisnik
-
     Sve tri runtime slike pokreću proces kao ugrađeni `node` korisnik (UID/GID 1000) iz službene `node` slike, umjesto zadanog `root`. Datoteke aplikacije se eksplicitno vlasnički dodjeljuju (`--chown=node:node`) tom korisniku prilikom kopiranja u finalni stage.
 
 ## Multi-stage struktura
-
     Svaki servis ima 4 stage-a u jednom Dockerfile-u:
 
     base - zajednički layer s package.json/package-lock.json (cache-friendly)
@@ -25,7 +22,6 @@
     runtime – zadnji i zadani stage (pokreće se po defaultu ako ne specificiram --target). Uzima čistu node:22-alpine sliku, postavlja node korisnika i iz deps stagea kopira samo node_modules i izvorni kod. Unutra nema nikakvih build alata, npm cachea niti dev paketa.
 
 ## Politika tagiranja i objave slika
-
     - Zabranjeno korištenje :latest taga u produkciji.  Svaka slika koja ide u registry mora imati nepromjenjivi (immutable) tag.
     - Predložena shema tagiranja: <servis>:<semver>-<git-short-sha>, npr. api:1.0.0-a1b2c3d. 
     - Semver prati verziju iz package.json, git SHA osigurava jedinstvenost i sljedivost do točnog commita.

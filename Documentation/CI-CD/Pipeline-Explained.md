@@ -1,9 +1,7 @@
 
-
-# CI/CD pipeline (CP4 / Ishodi I3, I4)
+# CI/CD pipeline 
 
 ## Opis toka
-
     Pipeline (.github/workflows/ci.yml) pokreće se na svaki push i pull_request prema main grani, paralelno za sva tri servisa (frontend, api, worker) preko GitHub Actions matrixa.
 
     1. Checkout — preuzimanje koda iz repozitorija.

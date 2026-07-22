@@ -1,11 +1,10 @@
 
-# Sigurnosno izvješće skeniranja slika (CP3 / Ishod I2)
+# Sigurnosno izvješće skeniranja slika
 
 ## Metodologija
 
     Skeniranje je provedeno alatom Trivy (Aqua Security), pokrenutim kao Docker kontejner. 
     
-
     Naredba -> docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v trivy-cache:/root/.cache/ aquasec/trivy image <ime-slike>
 
     Skenirane su tri aplikacijske slike (frontend, api, worker), i to na dva različita builda:
