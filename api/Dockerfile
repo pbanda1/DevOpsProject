@@ -19,6 +19,7 @@ RUN npm ci --omit=dev
 
 ##### Stage: runtime (default target - produkcijska slika) #####
 FROM node:22-alpine AS runtime
+RUN apk update && apk upgrade --no-cache libssl3 libcrypto3
 ENV NODE_ENV=production
 WORKDIR /app
 

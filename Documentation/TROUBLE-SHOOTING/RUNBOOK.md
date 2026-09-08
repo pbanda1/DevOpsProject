@@ -17,7 +17,7 @@
 ## 5 -> Validacija
     Funkcionalna provjera end-to-end.
 
-## Incident: Namjerno pokvaren deploy i rollback 
+## Incident 1: Namjerno pokvaren deploy i rollback 
     Kontekst:
         Deployment api namjerno je promijenjen na nepostojeći image tag da bi se testirao stvaran troubleshooting i rollback postupak (rolling update / rollback).
     Simptom:
@@ -52,7 +52,7 @@
     Rolling update strategija osigurala je nulti prekid rada aplikacije tijekom cijelog incidenta, unatoč pokvarenom image tagu. 
     kubectl rollout undo bez eksplicitnog --to-revision može biti nepouzdan kad povijest revizija nije linearna (npr. nakon više uzastopnih promjena) - eksplicitno ciljanje revizije brojem je pouzdanija praksa za produkcijski rollback.
 
-## Incident: Pad baze - Postgres nedostupan 
+## Incident 2: Pad baze - Postgres nedostupan 
     Kontekst:
     Postgres Deployment namjerno skaliran na 0 replika (namjerno naredjujemo Kubernetesu da ugasi sve instance (pods)) da se simulira nedostupnost baze u produkciji.
 
