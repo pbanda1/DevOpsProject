@@ -12,7 +12,7 @@
 ## 3 -> Provjera izvora istine za konfiguraciju
     Vrijednosti se čitaju iz stvarnog ConfigMap ili Secret objekta naredbom:
     kubectl get configmap [naziv_configmapa] -o yaml
-##  4 -> Korektivna mjera
+## 4 -> Korektivna mjera
     Minimalna, ciljana izmjena koja rješava utvrđeni uzrok.
 ## 5 -> Validacija
     Funkcionalna provjera end-to-end.
